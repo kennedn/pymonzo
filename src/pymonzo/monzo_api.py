@@ -20,6 +20,8 @@ from pymonzo.exceptions import MonzoAPIError, CantRefreshTokenError
 
 from pymonzo.utils import CommonMixin
 
+from datetime import datetime, timedelta
+
 
 class MonzoAPI(CommonMixin):
     """
@@ -355,6 +357,8 @@ class MonzoAPI(CommonMixin):
             method='get', endpoint=endpoint,
             params={
                 'account_id': account_id,
+                'since': (datetime.now() - timedelta(days=90)).isoformat() + "Z",
+                'expand[]': "merchant"
             },
         )
 

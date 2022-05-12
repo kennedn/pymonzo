@@ -95,7 +95,7 @@ class MonzoTransaction(MonzoObject):
     Class representation of Monzo transaction
     """
     _required_keys = [
-        'account_balance', 'amount', 'created', 'currency', 'description',
+        'amount', 'created', 'currency', 'description',
         'id', 'merchant', 'metadata', 'notes', 'is_load',
     ]
 
@@ -112,9 +112,9 @@ class MonzoTransaction(MonzoObject):
             self.settled = parse_date(data.pop('settled'))
 
         # Merchant field can contain either merchant ID or the whole object
-        if (data.get('merchant') and
-                not isinstance(data['merchant'], six.text_type)):
-            self.merchant = MonzoMerchant(data=data.pop('merchant'))
+#        if (data.get('merchant') and
+#                not isinstance(data['merchant'], six.text_type)):
+#            self.merchant = MonzoMerchant(data=data.pop('merchant'))
 
 
 class MonzoMerchant(MonzoObject):
